@@ -9,7 +9,7 @@ import urllib
 from datetime import datetime
 import pfile.accessor
 import time
-from ot_slurp.resource_access import get_random_user_agent
+from slurp.resource_access import get_random_user_agent
 
 
 
