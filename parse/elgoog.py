@@ -29,7 +29,6 @@ list_of_gshop_text_filename = os.path.join(root_folder, 'list_of_gshop_files.txt
 # UTILS
 
 
-
 def peep_in_results(file_info_dict, result_idx=0, item_idx=0):
     result = file_info_dict[result_idx]
     parsed_result = result['parse_dict']
