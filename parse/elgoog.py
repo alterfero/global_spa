@@ -138,7 +138,6 @@ def mk_item_info_df_from_multiple_parse_dicts(parse_dict_enum):
         df = pd.concat([df, mk_item_info_df_from_parse_dict(parse_dict)])
     return df.reset_index(drop=True)
 
-
 class DictLoader:
     def __init__(self, dict_source=None, max_idx=None):
         self.dict_list = os.listdir(parse_dicts_folder)[:-1]
