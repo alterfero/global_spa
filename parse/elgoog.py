@@ -4,6 +4,7 @@ __author__ = 'thor'
 import os
 import pickle
 import time
+import pandas as pd
 
 from bs4 import BeautifulSoup
 
@@ -109,3 +110,59 @@ def gshop_file_list(file_list, from_idx=0, to_idx=None):
                 continue
         except BaseException as e:
             log_to_file('log.log', " - ERROR: %d/%d: %s: %s" % (i, n, fi, e.message))
+
+
+
+def mk_item_info_dict(parse_dict_item):
+    info_dict = dict()
+    if 'desc' in parse_dict_item.keys():
+        info_dict['desc'] = parse_dict_item['desc']
+#     info_dict['href'] = parse_dict_item['href']
+    if 'img_src' in parse_dict_item.keys():
+        info_dict['img_src'] = parse_dict_item['img_src']
+    if 'href_text' in parse_dict_item.keys():
+        info_dict['title'] = parse_dict_item['href_text']
+    if 'psliprice_divs_text' in parse_dict_item.keys():
+        t = parse_dict_item['psliprice_divs_text']
+        if len(t) >= 2:
+            info_dict['price_str'] = t[0]
+            info_dict['provider'] = t[1]
+    return info_dict
+
+def mk_item_info_df_from_parse_dict(parse_dict):
+    return pd.DataFrame([mk_item_info_dict(dd) for dd in parse_dict])
+
+def mk_item_info_df_from_multiple_parse_dicts(parse_dict_enum):
+    df = pd.DataFrame()
+    for parse_dict in parse_dict_enum:
+        df = pd.concat([df, mk_item_info_df_from_parse_dict(parse_dict)])
+    return df.reset_index(drop=True)
+
+
+class DictLoader:
+    def __init__(self, dict_source=None, max_idx=None):
+        self.dict_list = os.listdir(parse_dicts_folder)[:-1]
+        self.max_idx = max_idx or (len(self.dict_list)-1)
+        self.idx = -1
+        if dict_source:
+            if hasattr(dict_source, 'load'):
+                self.dict_facc = dict_source
+            elif isinstance(dict_source, basestring):
+                import ms_utils.pfile.accessor as faccessor
+                self.dict_facc  = faccessor.for_local(dict_source)
+            else:
+                raise TypeError("can't handle the type of dict_source")
+        else:
+            import global_spa.data_access.accessors as gacc
+            self.dict_facc = gacc.parse_dicts_local()
+
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        self.idx += 1
+        if self.idx > self.max_idx:
+            raise StopIteration
+        else:
+            return self.dict_facc.load(self.dict_list[self.idx])
