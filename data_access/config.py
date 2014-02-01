@@ -1,12 +1,13 @@
 __author__ = 'thor'
 
 import os
-from ms_utils import pfile
+import ms_utils as ms
+import ms_utils.pfile.accessor
 
-root_folder = os.path.join(os.environ['GD_FOLDER'], 'Shared/ms_otosense')
-parse_dicts_folder = os.path.join(root_folder, 'parse_dicts')
+data_root_folder = os.path.join(os.environ['GD_FOLDER'], 'Shared/ms_otosense')
+parse_dicts_folder = os.path.join(data_root_folder, 'parse_dicts')
 
-facc = pfile.accessor.for_local(root_folder)
-dfacc = pfile.accessor.for_local(parse_dicts_folder, extension='dict_list', force_extension=True)
+facc = ms.pfile.accessor.for_local(data_root_folder)
 
-list_of_gshop_text_filename = os.path.join(root_folder, 'list_of_gshop_files.txt')
+
+

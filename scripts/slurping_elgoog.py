@@ -17,7 +17,7 @@ from slurp.resource_access import get_random_user_agent
 # SETTINGS
 root_folder = os.path.join(os.environ['GD_FOLDER'], 'Shared/ms_otosense')
 save_folder = os.path.join(root_folder, 'slurps')
-# save_folder = os.path.join(root_folder, 'slurps_test2')
+# save_folder = os.path.join(data_root_folder, 'slurps_test2')
 
 log_file = os.path.join(root_folder, 'progress_log.log')
 user_agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.222.5 Safari/532.2'
