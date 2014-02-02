@@ -138,30 +138,29 @@ def mk_item_info_df_from_multiple_parse_dicts(parse_dict_enum):
         df = pd.concat([df, mk_item_info_df_from_parse_dict(parse_dict)])
     return df.reset_index(drop=True)
 
-class DictLoader:
-    def __init__(self, dict_source=None, max_idx=None):
-        self.dict_list = os.listdir(parse_dicts_folder)[:-1]
-        self.max_idx = max_idx or (len(self.dict_list)-1)
-        self.idx = -1
-        if dict_source:
-            if hasattr(dict_source, 'load'):
-                self.dict_facc = dict_source
-            elif isinstance(dict_source, basestring):
-                import ms_utils.pfile.accessor as faccessor
-                self.dict_facc  = faccessor.for_local(dict_source)
-            else:
-                raise TypeError("can't handle the type of dict_source")
-        else:
-            import global_spa.data_access.accessors as gacc
-            self.dict_facc = gacc.parse_dicts_local()
-
-
-    def __iter__(self):
-        return self
-
-    def next(self):
-        self.idx += 1
-        if self.idx > self.max_idx:
-            raise StopIteration
-        else:
-            return self.dict_facc.load(self.dict_list[self.idx])
+# class DictLoader:
+#     def __init__(self, dict_source=None, max_idx=None):
+#         self.dict_list = os.listdir(parse_dicts_folder)[:-1]
+#         self.max_idx = max_idx or (len(self.dict_list)-1)
+#         self.idx = -1
+#         if dict_source:
+#             if hasattr(dict_source, 'load'):
+#                 self.dict_facc = dict_source
+#             elif isinstance(dict_source, basestring):
+#                 import ms_utils.pfile.accessor as faccessor
+#                 self.dict_facc  = faccessor.for_local(dict_source)
+#             else:
+#                 raise TypeError("can't handle the type of dict_source")
+#         else:
+#             pass
+#             # self.dict_facc = gacc.parse_dicts_local()
+#
+#     def __iter__(self):
+#         return self
+#
+#     def next(self):
+#         self.idx += 1
+#         if self.idx > self.max_idx:
+#             raise StopIteration
+#         else:
+#             return self.dict_facc.load(self.dict_list[self.idx])
