@@ -12,6 +12,7 @@ class DefaultDataAccessParams(object):
 
             self.data_folders = dict()
             self.data_folders['root'] = self.data_root_folder
+            self.data_folders['log'] = os.path.join(self.data_root_folder, 'log')
             self.data_folders['slurps'] = os.path.join(self.data_root_folder, 'slurps')
             self.data_folders['parse_dicts'] = os.path.join(self.data_root_folder, 'parse_dicts')
             self.data_folders['slurp_images'] = os.path.join(self.data_root_folder, 'slurp_images')

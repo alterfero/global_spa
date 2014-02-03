@@ -14,6 +14,12 @@ class ScrapesDataAccess(DefaultDataAccessParams):
     def __init__(self, **kwargs):
         self = ms.util.pobj.set_attributes(self, kwargs, DefaultDataAccessParams().__dict__)
 
+    def file_path(self, folder_name, filename=''):
+        if folder_name in self.data_folders:
+            return os.path.join(self.data_folders[folder_name], filename)
+        else:
+            raise ValueError("Unknown folder_name")
+
     def get_accessor(self, accessor_name, **kwargs):
         if accessor_name == 'slurps':
             return ms.pfile.accessor.for_local(self.data_folders[accessor_name],
@@ -30,7 +36,7 @@ class ScrapesDataAccess(DefaultDataAccessParams):
 
     def get_file_location_generator(self, generator_name):
         if generator_name in self.data_folders:  # if generator name is listed in data_folders
-            return glob.iglob(ensure_slash_suffix(self.data_folders[generator_name]) + '*')
+            return glob.iglob(ensure_slash_suffix(self.data_folders[generator_name]) + '*.*')
         elif os.path.exists(generator_name):  # if not, check if the file/folder exists
             return glob.iglob(ensure_slash_suffix(generator_name) + '*')
         else:
