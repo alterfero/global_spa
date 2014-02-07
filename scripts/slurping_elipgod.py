@@ -54,7 +54,7 @@ def url_from_filename(filename):
 # def acquire_query_result_from_dogpile(query, save_folder=os.path.join(os.environ['MS_DATA'], 'misc')):
 #     html = get_dogpile_html_from_query(query)
 #     if html:
-#         file_name = url_encode(query) + '.html'
+#         file_name = url_encode_str(query) + '.html'
 #         file_path = os.path.join(save_folder, file_name)
 #         save_html(html, file_path)
 #     else:

@@ -83,7 +83,7 @@ def url_from_filename(filename):
 # def acquire_query_result_from_dogpile(query, save_folder=os.path.join(os.environ['MS_DATA'], 'misc')):
 #     html = get_dogpile_html_from_query(query)
 #     if html:
-#         file_name = url_encode(query) + '.html'
+#         file_name = url_encode_str(query) + '.html'
 #         file_path = os.path.join(save_folder, file_name)
 #         save_html(html, file_path)
 #     else:
@@ -99,7 +99,7 @@ google_base_url = 'http://www.google.com'
 google_search_url = '/search?'
 google_default_params = {
                         'num':'100', # number of results - maximum 100
-                        'start': '1' # number of results to start with
+                        'start': '0' # number of results to start with
                         }
 gshop_default_params = dict(google_default_params, **{
                         'tbm':'shop', # the thing that makes it look on google shopping
@@ -128,11 +128,11 @@ def get_gsearch_request_url(query, result_page_number=0, number_of_results_per_p
     '''
     returns a url to get a google shopping result page
     '''
-    start_result_number = "%d" % (result_page_number*number_of_results_per_page + 1)
+    start_result_number = "%d" % (result_page_number*number_of_results_per_page)
     get_params = dict(google_default_params,
                       **{'start':start_result_number,
                          'num':number_of_results_per_page,
-                         'query':query})
+                         'q':query})
     return urlparse.urljoin(base=google_base_url,
                             url=google_search_url
                             + urllib.urlencode(query=get_params))
@@ -141,11 +141,11 @@ def get_gshop_request_url(query, result_page_number=0, number_of_results_per_pag
     '''
     returns a url to get a google shopping result page
     '''
-    start_result_number = "%d" % (result_page_number*number_of_results_per_page + 1)
+    start_result_number = "%d" % (result_page_number*number_of_results_per_page )
     get_params = dict(gshop_default_params,
                       **{'start':start_result_number,
                          'num':number_of_results_per_page,
-                         'query':query})
+                         'q':query})
     return urlparse.urljoin(base=google_base_url,
                             url=google_search_url
                             + urllib.urlencode(query=get_params))
@@ -154,11 +154,11 @@ def get_gnews_request_url(query, result_page_number=0, number_of_results_per_pag
     '''
     returns a url to get a google shopping result page
     '''
-    start_result_number = "%d" % (result_page_number*number_of_results_per_page + 1)
+    start_result_number = "%d" % (result_page_number*number_of_results_per_page)
     get_params = dict(gnews_default_params,
                       **{'start':start_result_number,
                          'num':number_of_results_per_page,
-                         'query':query})
+                         'q':query})
     return urlparse.urljoin(base=google_base_url,
                             url=google_search_url
                             + urllib.urlencode(query=get_params))
@@ -167,11 +167,11 @@ def get_gblogs_request_url(query, result_page_number=0, number_of_results_per_pa
     '''
     returns a url to get a google shopping result page
     '''
-    start_result_number = "%d" % (result_page_number*number_of_results_per_page + 1)
+    start_result_number = "%d" % (result_page_number*number_of_results_per_page)
     get_params = dict(gblogs_default_params,
                       **{'start':start_result_number,
                          'num':number_of_results_per_page,
-                         'query':query})
+                         'q':query})
     return urlparse.urljoin(base=google_base_url,
                             url=google_search_url
                             + urllib.urlencode(query=get_params))

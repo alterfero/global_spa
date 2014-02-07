@@ -12,7 +12,7 @@ import ms_utils as ms
 import ms_utils.pfile.to
 import ms_utils.pstr.trans
 
-from utils.log import log_to_file
+from global_spa.utils.log import log_to_file
 
 import pprint
 ppr = pprint.PrettyPrinter(indent=2)
