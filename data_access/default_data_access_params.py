@@ -24,6 +24,7 @@ class DefaultDataAccessParams(object):
             # glob filters
             self.glob_filters = dict()
             self.glob_filters['elgoog'] = 'http*{**www.google.com*'
+            self.glob_filters['yboss_df_slurps'] = self.data_folders['yboss_df_slurps'] + '/*'
 
             self.glob_filters['file_with_ext'] = '*.*'
             self.glob_filters['html'] = '*.html'
@@ -36,3 +37,6 @@ class DefaultDataAccessParams(object):
             self.glob_filters['gtwitter'] = self.glob_filters['elgoog'] + '*site%3Afacebook*'
             self.glob_filters['gyoutube'] = self.glob_filters['elgoog'] + '*site%3Ayoutube.com*'
 
+            self.glob_filters['yboss_blogs'] = self.glob_filters['yboss_df_slurps'] + '*blogs=*'
+            self.glob_filters['yboss_limitedweb'] = self.glob_filters['yboss_df_slurps'] + 'limitedweb=*'
+            self.glob_filters['yboss_facebook'] = self.glob_filters['yboss_df_slurps'] + 'site*facebook.com*'

@@ -329,7 +329,7 @@ for i, url in enumerate(url_list):
 #             if skipped > 0:
 #                 log_progress('SKIPPED: %d urls skipped because we already had them.' % skipped, log_file)
 #                 skipped = 0 # reset skipped counter
-        # slurp
+        # slurp_raw
         log_progress('item %d: slurping %s' % (i, url), log_file)
         try:
             html = get_html_of_url(url)
@@ -378,7 +378,7 @@ for i, url in enumerate(url_list):
 #             if skipped > 0:
 #                 log_progress('SKIPPED: %d urls skipped because we already had them.' % skipped, log_file)
 #                 skipped = 0 # reset skipped counter
-        # slurp
+        # slurp_raw
         log_progress('item %d: slurping %s' % (i, url), log_file)
         try:
             image_slurper(url)
