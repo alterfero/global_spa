@@ -20,6 +20,7 @@ class DefaultDataAccessParams(object):
             self.data_folders['parse_dicts'] = os.path.join(self.data_root_folder, 'parse_dicts')
             self.data_folders['slurp_images'] = os.path.join(self.data_root_folder, 'slurp_images')
             self.data_folders['facebook_slurps'] = os.path.join(self.data_root_folder, 'facebook_slurps')
+            self.data_folders['pickles'] = os.path.join(self.data_root_folder, 'pickles')
 
             ##################################################################
             # glob filters
@@ -41,3 +42,6 @@ class DefaultDataAccessParams(object):
             self.glob_filters['yboss_blogs'] = self.glob_filters['yboss_df_slurps'] + '*blogs=*'
             self.glob_filters['yboss_limitedweb'] = self.glob_filters['yboss_df_slurps'] + 'limitedweb=*'
             self.glob_filters['yboss_facebook'] = self.glob_filters['yboss_df_slurps'] + 'site*facebook.com*'
+
+            self.deaf_synonyms = ['deaf', 'hearing impaired', 'hard of hearing',
+                                  'deafened', 'earless', 'unable to hear']
