@@ -49,6 +49,13 @@ class ScrapesDataAccess(DefaultDataAccessParams):
         else:
             return key_name
 
+    @classmethod
+    def filename_from_url(cls, url):
+        return url.replace('/', '~').replace(':', '{') + '.html'
+
+    @classmethod
+    def url_from_filename(cls, url):
+        return url.replace('.html', '').replace('/', '~').replace('{', ':')
 
 ##################################################################
         ### OLD

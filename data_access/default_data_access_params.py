@@ -19,6 +19,7 @@ class DefaultDataAccessParams(object):
             self.data_folders['yboss_df_slurps'] = os.path.join(self.data_root_folder, 'yboss_df_slurps')
             self.data_folders['parse_dicts'] = os.path.join(self.data_root_folder, 'parse_dicts')
             self.data_folders['slurp_images'] = os.path.join(self.data_root_folder, 'slurp_images')
+            self.data_folders['facebook_slurps'] = os.path.join(self.data_root_folder, 'facebook_slurps')
 
             ##################################################################
             # glob filters
