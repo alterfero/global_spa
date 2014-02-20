@@ -44,4 +44,5 @@ class DefaultDataAccessParams(object):
             self.glob_filters['yboss_facebook'] = self.glob_filters['yboss_df_slurps'] + 'site*facebook.com*'
 
             self.deaf_synonyms = ['deaf', 'hearing impaired', 'hard of hearing',
+                                  'hearing impairment', 'hearing loss',
                                   'deafened', 'earless', 'unable to hear']
